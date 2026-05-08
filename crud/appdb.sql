@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Tempo de geração: 08-Maio-2026 às 15:42
+-- Tempo de geração: 08-Maio-2026 às 16:01
 -- Versão do servidor: 8.4.9
 -- versão do PHP: 8.3.26
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de dados: `appdb`
 --
+CREATE DATABASE IF NOT EXISTS `appdb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `appdb`;
 
 -- --------------------------------------------------------
 
@@ -27,8 +29,10 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `clientes`
 --
 
+DROP TABLE IF EXISTS `clientes`;
 CREATE TABLE `clientes` (
   `id` int NOT NULL,
+  `nif` varchar(15) NOT NULL,
   `nome` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `telefone` varchar(20) DEFAULT NULL
@@ -38,8 +42,8 @@ CREATE TABLE `clientes` (
 -- Extraindo dados da tabela `clientes`
 --
 
-INSERT INTO `clientes` (`id`, `nome`, `email`, `telefone`) VALUES
-(1, 'Rodrigo Gonçalves', 'abc@sapo.pt', '123456789');
+INSERT INTO `clientes` (`id`, `nif`, `nome`, `email`, `telefone`) VALUES
+(1, '', 'Rodrigo Gonçalves', 'abc@sapo.pt', '123456789');
 
 --
 -- Índices para tabelas despejadas
