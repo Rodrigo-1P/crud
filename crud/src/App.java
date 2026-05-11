@@ -32,7 +32,7 @@ public class App {
                                     background-color: #2f3640;
                                     color: white;
                                     padding: 20px;
-                                }
+                                }   
                                 h1 {
                                     margin: 0;
                                 }
@@ -110,6 +110,7 @@ public class App {
                             <tr>
                                 <th>ID</th>
                                 <th>Nome</th>
+                                <th>Nif</th>
                                 <th>Email</th>
                                 <th>Telefone</th>
                                 <th>Ações</th>
@@ -128,12 +129,14 @@ public class App {
                 while (rs.next()) {
                     int id = rs.getInt("id");
                     String nome = rs.getString("nome");
+                    String nif = rs.getString("nif");
                     String email = rs.getString("email");
                     String telefone = rs.getString("telefone");
 
                     html.append("<tr>");
                     html.append("<td>").append(id).append("</td>");
                     html.append("<td>").append(nome).append("</td>");
+                    html.append("<td>").append(nif).append("</td>");
                     html.append("<td>").append(email).append("</td>");
                     html.append("<td>").append(telefone).append("</td>");
                     html.append("<td>");
@@ -201,6 +204,10 @@ public class App {
                             Nome:
 
                             <input name='nome' required>
+                            
+                            Nif:
+
+                            <input name='nif'>
 
 
                             Email:
@@ -258,6 +265,8 @@ public class App {
 
                 String nome = "";
 
+                String nif = "";
+
                 String email = "";
 
                 String telefone = "";
@@ -276,6 +285,10 @@ public class App {
 
                             case "nome":
                                 nome = value;
+                                break;
+
+                            case "nif":
+                                nif = value;
                                 break;
 
                             case "email":
@@ -300,15 +313,17 @@ public class App {
 
                 }
 
-                String sql = "INSERT INTO clientes(nome,email,telefone) VALUES (?,?,?)";
+                String sql = "INSERT INTO clientes(nome,nif,email,telefone) VALUES (?,?,?,?)";
 
                 PreparedStatement ps = con.prepareStatement(sql);
 
                 ps.setString(1, nome);
 
-                ps.setString(2, email);
+                ps.setString(2, nif);
+                
+                ps.setString(3, email);
 
-                ps.setString(3, telefone);
+                ps.setString(4, telefone);
 
                 ps.executeUpdate();
 
@@ -435,6 +450,8 @@ public class App {
 
                 String nome = rs.getString("nome");
 
+                String nif = rs.getString("nif");
+
                 String email = rs.getString("email");
 
                 String telefone = rs.getString("telefone");
@@ -475,6 +492,8 @@ public class App {
                 html.append("<input type='hidden' name='id' value='").append(id).append("'>");
 
                 html.append("Nome:<input name='nome' value='").append(nome).append("' required>");
+
+                html.append("Nif:<input name='nif' value='").append(nif).append("' required>");
 
                 html.append("Email:<input name='email' value='").append(email).append("' required>");
 
@@ -553,6 +572,8 @@ public class App {
 
                 String nome = "";
 
+                String nif = "";
+
                 String email = "";
 
                 String telefone = "";
@@ -575,6 +596,10 @@ public class App {
 
                             case "nome":
                                 nome = value;
+                                break;
+
+                            case "nif":
+                                nif = value;
                                 break;
 
                             case "email":
@@ -601,17 +626,19 @@ public class App {
 
                 }
 
-                String sql = "UPDATE clientes SET nome=?, email=?, telefone=? WHERE id=?";
+                String sql = "UPDATE clientes SET nome=?, nif=?, email=?, telefone=? WHERE id=?";
 
                 PreparedStatement ps = con.prepareStatement(sql);
 
                 ps.setString(1, nome);
 
-                ps.setString(2, email);
+                ps.setString(2, nif);
 
-                ps.setString(3, telefone);
+                ps.setString(3, email);
 
-                ps.setInt(4, id);
+                ps.setString(4, telefone);
+
+                ps.setInt(5, id);
 
                 ps.executeUpdate();
 
