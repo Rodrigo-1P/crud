@@ -950,12 +950,12 @@ public class App {
                             
                             produto:
 
-                            <input name='produto'>
+                            <input name='produto' required>
 
 
                             preco:
 
-                            <input name='produto' required>
+                            <input name='preco' required>
 
                             <button type='submit'>Guardar</button>
 
@@ -1044,7 +1044,7 @@ public class App {
 
                 }
 
-                String sql = "INSERT INTO clientes(refproduto,produto,preco) VALUES (?,?,?)";
+                String sql = "INSERT INTO produtos(refproduto,produto,preco) VALUES (?,?,?)";
 
                 PreparedStatement ps = con.prepareStatement(sql);
 
@@ -1177,7 +1177,7 @@ public class App {
 
                 }
 
-                String refproduto = rs.getString("refprodutos");
+                String refproduto = rs.getString("refproduto");
 
                 String produto = rs.getString("produto");
 
@@ -1253,9 +1253,9 @@ public class App {
 
                             <body>
 
-                            <h2>!Erro ao carregar cliente</h2>
+                            <h2>!Erro ao carregar Produto</h2>
 
-                            <a href='/clientes'>Voltar</a>
+                            <a href='/produtos'>Voltar</a>
 
                             </body>
 
@@ -1345,7 +1345,7 @@ public class App {
 
                 }
 
-                String sql = "UPDATE clientes SET nome=?, nif=?, email=?, telefone=? WHERE id=?";
+                String sql = "UPDATE produtos SET refproduto=?, produto=?, preco=? WHERE id=?";
 
                 PreparedStatement ps = con.prepareStatement(sql);
 
